@@ -1,0 +1,11 @@
+build scapy project:
+
+scrapy startproject fang
+scrapy genspider fang_spider "fang.com"
+
+url: http://esf.sh.fang.com/
+
+command lines: 
+
+from scrapy import cmdline
+cmdline.execute("scrapy crawl sfw_spider".split())
