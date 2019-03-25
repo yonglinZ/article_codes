@@ -210,7 +210,7 @@ def baidu_crawler_v3(data,key = key30,folder_path = folder_path):
                 f.write(res)
                 f.close()
         except Exception as e:
-            print('******远程主机强制关闭或者RemoteDisconnected,i:%s*******'%flag) 
+            print('******RemoteDisconnected,i:%s*******'%flag) 
             err_li.append(url) 
             print(e)
         
