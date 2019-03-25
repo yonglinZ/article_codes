@@ -1,5 +1,5 @@
 """
-2018/12/25
+2019/01/25
 
 @author: ZYL_rcees
 
@@ -34,8 +34,8 @@ s3 = data['lon']
 data = pd.concat([s1,s2,s3],axis=1)
 data.columns = ['FID','lat','lon']
 
-key = '8ljimGEfgienvbpHSDFOBag5N3K49' 
-key30 = '6IMDbRWqr6Tu8U7PdqwkRGPcXKvVP' 
+key = 'your key' 
+key30 = 'your key' 
 
 
 def div_df4(df,start): 
@@ -85,13 +85,13 @@ def coords_trans_baidu100(data,key = key):
                 json_res.append(resjson)
                 url_res.append(url)
                 
-                lat_arr, lon_arr = json_parse(resjson) #返回解析每一个resjson的lat和lon数组
+                lat_arr, lon_arr = json_parse(resjson) 
                 
                 lat_res.append(list(lat_arr))
                 lon_res.append(list(lon_arr))
                 
             except Exception as e:
-                print('******远程主机强制关闭或者RemoteDisconnected,i:%s*******'%i)
+                print('******RemoteDisconnected,i:%s*******'%i)
                 url_res.append('error')
                 lat_res.append(np.array([]))
                 lon_res.append(np.array([]))
@@ -147,7 +147,7 @@ def baidu_crawler_v2(data):
         folder_path = r'E:/project_y/Beijing_BSVs/' 
         panoid = 'BSV_'+city+flag 
         name = 'BSV_'+city+str(startwith+i)+'.png'
-        time.sleep(0.01) #防止服务器误认为是网络攻击
+        time.sleep(0.01) 
         url_C = '&location='+str(LAT)+','+str(LON)
         url = url_A+url_B+url_C
         try: 
@@ -163,7 +163,7 @@ def baidu_crawler_v2(data):
                 f.write(res)
                 f.close()
         except Exception as e:
-            print('******远程主机强制关闭或者RemoteDisconnected,i:%s*******'%flag) 
+            print('******RemoteDisconnected,i:%s*******'%flag) 
             err_li.append(url) 
             print(e)
 
@@ -186,9 +186,9 @@ def baidu_crawler_v3(data,key = key30,folder_path = folder_path):
     err_li = []
     response_li = []
     url_A = 'http://api.map.baidu.com/panorama/v2?'
-    url_B = 'ak='+key+'&width=1000&height=500&fov=360' # 在家用key30
+    url_B = 'ak='+key+'&width=1000&height=500&fov=360' # key30
     progress = progressbar.ProgressBar(max_value=len(data)).start()
-    for i,si in enumerate(siren.index): # 用FID迭代
+    for i,si in enumerate(siren.index):  
         LAT = data.ix[si]['baidu_lat']
         LON = data.ix[si]['baidu_lon']
         progress.update(i)
